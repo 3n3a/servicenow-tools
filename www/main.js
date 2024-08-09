@@ -3,6 +3,22 @@ const logElement = document.getElementById('log');
 logElement.textContent += message + '\n';
 }
 
+function createDownloadLink(blob, filename) {
+    const fileUrl = window.URL.createObjectURL(blob);
+    const anchorElement = document.createElement('a');
+
+    anchorElement.href = fileUrl;
+    anchorElement.download = filename;
+    //anchorElement.style.display = 'none'
+
+    document.body.appendChild(anchorElement);
+
+    //anchorElement.click();
+    //anchorElement.remove();
+
+    //window.URL.revokeObjectURL(fileUrl)
+}
+
 function generateSysId() {
 return crypto.subtle.digest('MD5', new TextEncoder().encode(crypto.randomUUID())).then(buffer => {
     return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -240,12 +256,15 @@ reader.onload = async function (event) {
     const outputFileName = file.name.replace('.xml', '_fixed.xml');
     const outputBlob = new Blob([serializer.serializeToString(xmlDoc)], { type: 'application/xml' });
 
+    createDownloadLink(outputBlob, outputFileName);
+    /*
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(outputBlob);
     downloadLink.download = outputFileName;
     downloadLink.textContent = "Download Fixed XML File";
     status.innerHTML = '';
     status.appendChild(downloadLink);
+    */
 };
 reader.readAsText(file);
 }

@@ -236,7 +236,7 @@ reader.onload = async function (event) {
 
     const [baseUpdateSetId, updateSetCount] = getBaseUpdateSetIdFromUpdateSets(xmlDoc);
     const baseUpdateSetName = baseUpdateSetId ? getBaseUpdateSetName(xmlDoc, baseUpdateSetId) : inferBaseUpdateSetNameFromSingleUpdateSet(xmlDoc);
-    logToPre(updateSetCount + "update set(s) found in the XML.");
+    logToPre(updateSetCount + " update set(s) found in the XML.");
     logToPre("Original Base Update Set Name: " + baseUpdateSetName);
 
     const [newParentName, newChildName] = generateUpdateSetNames(baseUpdateSetName);
@@ -253,6 +253,7 @@ reader.onload = async function (event) {
     updateRemoteUpdateSetElements(xmlDoc, applicationIdMap);
 
     const serializer = new XMLSerializer();
+    logToPre("XML Debug: "+serializer.serializeToString(xmlDoc));
     const outputFileName = file.name.replace('.xml', '_fixed.xml');
     const outputBlob = new Blob([serializer.serializeToString(xmlDoc)], { type: 'application/xml' });
 

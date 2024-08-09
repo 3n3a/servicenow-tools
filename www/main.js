@@ -202,6 +202,7 @@ btn.addEventListener("click", (eventInner) => {
 try {
   processFile();
 } catch(e) {
+  logToPre(JSON.stringify(e));
   console.log(e);
   alert(e);
 }

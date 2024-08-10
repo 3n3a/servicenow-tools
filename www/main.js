@@ -125,7 +125,9 @@ async function createOrRetrieveParentUpdateSet(
     parentUpdateSet.appendChild(parentSysCreatedBy);
 
     // FIX: operation would yield incorrect node tree
-    root.insertBefore(parentUpdateSet, root.firstChild);
+    //root.insertBefore(parentUpdateSet, root.firstChildElement);
+    root.querySelector('unload').insertBefore(parentUpdateSet, null);
+
 
     return parentSysIdString;
   } else {
@@ -311,6 +313,7 @@ function processFile() {
       );
       logToPre("Matched Applications:" + Array.from(matchedApplications));
 
+    //  logToPre((new XMLSerializer).serializeToString(xmlDoc))
       const parentSysIdString = await createOrRetrieveParentUpdateSet(
         baseUpdateSetId,
         xmlDoc,

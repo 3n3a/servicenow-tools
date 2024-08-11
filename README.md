@@ -1,7 +1,9 @@
-# servicenow-invalid-scope-update-set-fixer
+# ServiceNow Tools
+
+## servicenow-invalid-scope-update-set-fixer
 ServiceNow UpdateSet Invalid Scope Fixer (In Browser)
 
-## Information
+### Information
 
 * Python Script which inspired this: https://github.com/BisonITS/fix-update-2-update-set-assignments/tree/master
 * Blog Post about this: https://sn-nerd.com/2022/02/12/how-to-prevent-cannot-commit-update-set-issues-in-your-instance/

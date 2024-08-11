@@ -126,8 +126,9 @@ async function createOrRetrieveParentUpdateSet(
 
     // FIX: operation would yield incorrect node tree
     //root.insertBefore(parentUpdateSet, root.firstChildElement);
-    root.querySelector('unload').insertBefore(parentUpdateSet, null);
-
+    //root.querySelector('unload').insertBefore(parentUpdateSet, null);
+    const unload = root.getElementsByTagName("unload")[0];
+    unload.insertBefore(parentUpdateSet, unload.firstChild);
 
     return parentSysIdString;
   } else {
@@ -204,7 +205,9 @@ async function generateChildUpdateSets(
 
     applicationIdMap[unmatchedApplication] = generatedSysId;
 
-    root.insertBefore(sysRemoteUpdateSet, root.firstChild);
+    //root.insertBefore(sysRemoteUpdateSet, root.firstChild);
+    const unload = root.getElementsByTagName("unload")[0];
+    unload.insertBefore(sysRemoteUpdateSet, unload.firstChild);
   }
   return applicationIdMap;
 }
@@ -337,21 +340,22 @@ function processFile() {
       updateRemoteUpdateSetElements(xmlDoc, applicationIdMap);
 
       const serializer = new XMLSerializer();
-      logToPre("XML Debug: " + serializer.serializeToString(xmlDoc));
+      //logToPre("XML Debug: " + serializer.serializeToString(xmlDoc));
       const outputFileName = file.name.replace(".xml", "_fixed.xml");
       const outputBlob = new Blob([serializer.serializeToString(xmlDoc)], {
         type: "application/xml",
       });
 
-      createDownloadLink(outputBlob, outputFileName);
-      /*
+
+      //createDownloadLink(outputBlob, outputFileName);
+      
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(outputBlob);
     downloadLink.download = outputFileName;
     downloadLink.textContent = "Download Fixed XML File";
     status.innerHTML = '';
     status.appendChild(downloadLink);
-    */
+    
     } catch (e) {
       logToPre(e.message);
       logToPre(JSON.stringify(e));

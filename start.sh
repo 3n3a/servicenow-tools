@@ -1,3 +1,3 @@
 #!/bin/sh
 
-npx serve www
+npx -y serve www

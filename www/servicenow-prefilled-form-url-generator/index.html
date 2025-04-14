@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceNow Prefilled Form URL Generator</title>
+    <meta name="description" content="ServiceNow Tool - Prefilled Form URL Generator" />
+    <meta name="keywords" content="servicenow, update set, error, fix, scope, javascript, script, glide" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        pre {
+          white-space: pre-wrap;
+        }
+
+        .pb-2 {
+            padding-bottom: .5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="pb-2">
+            <h1>Prefilled Form URL Generator</h1>
+            <p>Generate a URL that prefills a form with field values.</p>
+            <i>All the values entered will be stored in LocalStorage (in your Browser).</i>
+        </div>
+        <div>
+            <label for="instance">Instance Name:</label>
+            <input type="text" id="instance" name="instance">
+        </div>
+        <div>
+            <label for="table">Table:</label>
+            <input type="text" id="table" name="table">
+        </div>
+        <div id="fields">
+            <div class="grid">
+                <div>
+                    <label for="field_name1">Field Name:</label>
+                    <input type="text" id="field_name1" name="field_name1">
+                </div>
+                <div>
+                    <label for="field_value1">Field Value:</label>
+                    <input type="text" id="field_value1" name="field_value1">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="secondary" onclick="s.addField()">+ Add Field</button>
+        </div>
+        <div>
+            <label for="output">Output:</label>
+            <pre><code id="output"></code></pre>
+            <button id="copy-clipboard" class="secondary" onclick="s.copyOutput()">Copy</button>
+        </div>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

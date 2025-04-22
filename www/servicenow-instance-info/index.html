@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tool for retrieving information about ServiceNow instances including replication details, database configuration, and cluster information">
+    <meta name="keywords" content="ServiceNow, instance information, system information, database configuration, replication status, IT service management, ITSM tools">
+    <meta name="color-scheme" content="light dark" />
+    <title>ServiceNow Instance Information Viewer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            background-color: #ffeaea;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .result-container {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            text-align: left;
+        }
+        
+        .info-card {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>ServiceNow Instance Information</h1>
+            <p>Enter a ServiceNow instance URL to retrieve detailed information about the instance configuration.</p>
+        </header>
+        
+        <section class="info-card">
+            <article>
+                <form id="instanceForm">
+                    <label for="instanceUrl">
+                        ServiceNow Instance URL
+                        <input 
+                            type="url" 
+                            id="instanceUrl" 
+                            name="instanceUrl" 
+                            placeholder="https://your-instance.service-now.com"
+                            required>
+                    </label>
+                    <button type="submit" id="submitBtn">Get Instance Info</button>
+                </form>
+            </article>
+        </section>
+        
+        <div class="loading" id="loadingIndicator">
+            <progress></progress>
+            <p>Retrieving instance information...</p>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <section class="result-container" id="resultContainer">
+            <h2>Instance Information</h2>
+            
+            <article>
+                <h3>Replication Details</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="replicationTable">
+                        <!-- Table content will be populated dynamically -->
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
